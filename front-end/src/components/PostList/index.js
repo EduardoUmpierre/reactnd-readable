@@ -1,50 +1,19 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import {
-  Container,
-  Item,
-  TitleContainer,
-  Title,
-  Author,
-  ScoreContainer,
-  Score,
-  VoteButton,
-  CommentCounter,
-} from './styles'
+import { Container, EmptyMessage } from './styles'
 import SectionTitle from '../SectionTitle'
-import { handleAddScorePost } from '../../actions/posts'
+import PostItem from '../PostItem'
 
-const handleVote = (id, vote, dispatch) =>
-  dispatch(handleAddScorePost({ id, vote }))
-
-const PostList = ({ items, dispatch }) => (
+const PostList = ({ items, filteringBy }) => (
   <>
-    <SectionTitle>Posts</SectionTitle>
+    <SectionTitle>Posts {filteringBy && `- ${filteringBy}`}</SectionTitle>
     <Container>
       {items.map(post => (
-        <Item key={post.id}>
-          <TitleContainer>
-            <Title>{post.title}</Title>
-            <Author>{post.author}</Author>
-          </TitleContainer>
-
-          <ScoreContainer>
-            <Score>Score: {post.voteScore}</Score>
-            <VoteButton
-              onClick={() => handleVote(post.id, 'downVote', dispatch)}
-            >
-              -
-            </VoteButton>
-            <VoteButton onClick={() => handleVote(post.id, 'upVote', dispatch)}>
-              +
-            </VoteButton>
-          </ScoreContainer>
-
-          <CommentCounter>Comments: {post.commentCount}</CommentCounter>
-        </Item>
+        <PostItem key={post.id} post={post} />
       ))}
+
+      {items.length === 0 && <EmptyMessage>Nenhum post encontrado</EmptyMessage>}
     </Container>
   </>
 )
 
-export default connect()(PostList)
+export default PostList

@@ -20,6 +20,7 @@ class App extends Component {
       <Router>
         <Container>
           <Route path="/" exact component={Home} />
+          <Route path="/:category" component={Home} />
         </Container>
       </Router>
     )

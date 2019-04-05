@@ -7,7 +7,9 @@ const CategoryList = ({ items }) => (
     <SectionTitle>Categorias</SectionTitle>
     <Container>
       {items.map(category => (
-        <Item key={category.name}>{category.name}</Item>
+        <Item key={category.name} to={`/${category.path}`}>
+          {category.name}
+        </Item>
       ))}
     </Container>
   </>
