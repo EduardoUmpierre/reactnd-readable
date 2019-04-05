@@ -3,23 +3,10 @@ import { connect } from 'react-redux'
 import PostList from '../../components/PostList'
 import CategoryList from '../../components/CategoryList'
 
-const filterByCategory = (category, posts) => {
-  if (!category) {
-    return posts
-  }
-  
-  return posts.filter(
-    post => post.category.toLowerCase() === category.toLowerCase()
-  )
-}
-
 const Home = ({ category, categories, posts }) => (
   <>
     <CategoryList items={categories} />
-    <PostList
-      items={filterByCategory(category, posts)}
-      filteringBy={category}
-    />
+    <PostList items={posts} filteringBy={category} />
   </>
 )
 
@@ -29,7 +16,11 @@ const mapStateToProps = ({ categories, posts }, props) => {
   return {
     category,
     categories,
-    posts,
+    posts: !category
+      ? posts
+      : posts.filter(
+          post => post.category.toLowerCase() === category.toLowerCase()
+        ),
   }
 }
 

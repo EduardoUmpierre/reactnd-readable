@@ -12,11 +12,13 @@ import {
   CommentCounter,
 } from './styles'
 
-const handleVote = (id, vote, dispatch) =>
+const handleVote = (e, id, vote, dispatch) => {
+  e.preventDefault()
   dispatch(handleAddScorePost({ id, vote }))
+}
 
 const PostItem = ({ post, dispatch }) => (
-  <Item>
+  <Item to={`${post.category}/${post.id}`}>
     <TitleContainer>
       <Title>{post.title}</Title>
       <Author>{post.author}</Author>
@@ -24,10 +26,10 @@ const PostItem = ({ post, dispatch }) => (
 
     <ScoreContainer>
       <Score>Score: {post.voteScore}</Score>
-      <VoteButton onClick={() => handleVote(post.id, 'downVote', dispatch)}>
+      <VoteButton onClick={e => handleVote(e, post.id, 'downVote', dispatch)}>
         -
       </VoteButton>
-      <VoteButton onClick={() => handleVote(post.id, 'upVote', dispatch)}>
+      <VoteButton onClick={e => handleVote(e, post.id, 'upVote', dispatch)}>
         +
       </VoteButton>
     </ScoreContainer>

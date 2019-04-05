@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { handleInitialData } from '../../actions/shared'
 import Home from '../Home'
 import { container } from '../../styles/shared'
+import PostDetail from '../Post/Detail'
 
 const Container = styled.div`
   ${container}
@@ -20,7 +21,8 @@ class App extends Component {
       <Router>
         <Container>
           <Route path="/" exact component={Home} />
-          <Route path="/:category" component={Home} />
+          <Route path="/:category" exact component={Home} />
+          <Route path="/:category/:post_id" component={PostDetail} />
         </Container>
       </Router>
     )

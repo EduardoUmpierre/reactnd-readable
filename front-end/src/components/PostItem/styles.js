@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { Link } from 'react-router-dom'
 import { box } from '../../styles/shared'
 
 const sharedFontStyle = css`
@@ -6,7 +7,7 @@ const sharedFontStyle = css`
   font-size: 0.75rem;
 `
 
-export const Item = styled.div`
+export const Item = styled(Link)`
   align-items: center;
   ${box({ clickable: true })}
   display: flex;
