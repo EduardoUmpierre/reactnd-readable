@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import styled from 'styled-components'
 import { handleInitialData } from '../../actions/shared'
 import Home from '../Home'
+import { container } from '../../styles/shared'
+
+const Container = styled.div`
+  ${container}
+`
 
 class App extends Component {
   componentDidMount() {
@@ -10,9 +17,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className='App'>
-        <Home />
-      </div>
+      <Router>
+        <Container>
+          <Route path="/" exact component={Home} />
+        </Container>
+      </Router>
     )
   }
 }
