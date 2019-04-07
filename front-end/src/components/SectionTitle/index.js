@@ -10,10 +10,15 @@ const Title = styled.h2`
   justify-content: space-between;
   margin: 2rem 0 1rem;
 
-  a {
+  a,
+  button {
+    background-color: transparent;
+    border: none;
     color: #333;
+    cursor: pointer;
     font-size: 0.85rem;
     margin-right: 1rem;
+    text-decoration: underline;
 
     &:last-child {
       margin-right: 0;

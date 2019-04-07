@@ -8,3 +8,5 @@ export const PostBody = styled.p`
   margin: 2rem 1rem;
   padding-bottom: 2rem;
 `
+
+export const Button = styled.button``

@@ -20,7 +20,7 @@ export const box = ({ clickable = true }) => css`
     `}
 `
 export const container = css`
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 0 10px;
   max-width: 1024px;
 `

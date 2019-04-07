@@ -1,11 +1,12 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
-import { setVotePost, getPost, savePost, updatePostData } from '../utils/api'
+import { setVotePost, getPost, savePost, updatePostData, deletePost } from '../utils/api'
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const RECEIVE_POST = 'RECEIVE_POST'
 export const ADD_SCORE_POST = 'ADD_SCORE_POST'
 export const ADD_POST = 'ADD_POST'
 export const UPDATE_POST = 'UPDATE_POST'
+export const REMOVE_POST = 'REMOVE_POST'
 
 export function receivePosts(posts) {
   return {
@@ -82,5 +83,20 @@ export function handleUpdatePost(id, data) {
       .then(() => dispatch(updatePost(id, data)))
       .then(() => dispatch(hideLoading()))
       .catch(error => console.log(error))
+  }
+}
+
+function removePost(id) {
+  return {
+    type: REMOVE_POST,
+    id,
+  }
+}
+
+export function handleRemovePost(id) {
+  return dispatch => {
+    dispatch(removePost(id))
+
+    return deletePost(id).catch(error => console.log(error))
   }
 }

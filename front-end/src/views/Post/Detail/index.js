@@ -1,17 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import PostItem from '../../../components/PostItem'
-import { PostBody } from './styles'
+import { PostBody, Button } from './styles'
 import { handleReceiveComments } from '../../../actions/comments'
 import SectionTitle from '../../../components/SectionTitle'
 import CommentList from '../../../components/CommentList'
+import { handleRemovePost } from '../../../actions/posts'
+import { EmptyMessage } from '../../../components/PostList/styles';
 
 class PostDetail extends Component {
   componentDidMount() {
     const { post_id } = this.props.match.params
 
     this.props.dispatch(handleReceiveComments(post_id))
+  }
+
+  handleRemove = (e, id) => {
+    e.preventDefault()
+
+    const { dispatch, history } = this.props
+
+    dispatch(handleRemovePost(id))
+
+    history.push('/')
   }
 
   render() {
@@ -23,7 +35,9 @@ class PostDetail extends Component {
           Post
           <div>
             <Link to={`/post/${post.id}`}>Editar</Link>
-            <Link to="/">Excluir</Link>
+            <Button onClick={e => this.handleRemove(e, post.id)}>
+              Excluir
+            </Button>
           </div>
         </SectionTitle>
 
@@ -32,7 +46,7 @@ class PostDetail extends Component {
 
         <CommentList items={comments} />
       </>
-    ) : null
+    ) : <EmptyMessage>Post não encontrado</EmptyMessage>
   }
 }
 
@@ -45,4 +59,4 @@ const mapStateToProps = ({ posts, comments }, props) => {
   }
 }
 
-export default connect(mapStateToProps)(PostDetail)
+export default withRouter(connect(mapStateToProps)(PostDetail))

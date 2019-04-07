@@ -18,6 +18,14 @@ const Container = styled.div`
   ${container}
 `
 
+const NavContainer = styled.div`
+  margin-bottom: 2rem;
+
+  a {
+    color: #333;
+  }
+`
+
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
@@ -29,7 +37,10 @@ class App extends Component {
         <>
           <LoadingBar showFastActions />
           <Container>
-            <NavLink to="/">Home</NavLink>
+            <NavContainer>
+              <NavLink to="/">Home</NavLink>
+            </NavContainer>
+
             {!this.props.loading && (
               <Switch>
                 <Route path="/" exact component={Home} />

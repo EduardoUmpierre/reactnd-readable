@@ -4,6 +4,7 @@ import {
   RECEIVE_POST,
   ADD_POST,
   UPDATE_POST,
+  REMOVE_POST,
 } from '../actions/posts'
 
 export default function posts(state = [], action) {
@@ -34,6 +35,8 @@ export default function posts(state = [], action) {
 
         return { ...post, ...action.post }
       })
+    case REMOVE_POST:
+      return state.filter(post => post.id !== action.id)
     default:
       return state
   }
