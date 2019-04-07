@@ -40,7 +40,10 @@ export const Score = styled.div`
   margin-right: 0.5rem;
 `
 export const VoteButton = styled.button`
+  background-color: #f1f1f1;
   border: 1px solid #f1f1f1;
+  color: #333;
+  cursor: pointer;
   line-height: 1;
   margin-right: 0.25rem;
   padding: 0.25rem 0.5rem;
