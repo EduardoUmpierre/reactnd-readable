@@ -19,6 +19,6 @@ To start the project you need to run two different projects.
 
 Information about the API server and how to use it can be found in its [README file](api-server/README.md).
 
-## API Server
+## Front end
 
 Information about the front-end application and how to use it can be found in its [README file](front-end/README.md).
