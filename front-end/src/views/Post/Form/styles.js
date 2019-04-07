@@ -33,6 +33,10 @@ export const ButtonContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+
+  a {
+    color: #333;
+  }
 `
 
 export const Button = styled.button`
