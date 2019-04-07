@@ -1,6 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { handleAddScoreComment } from '../../actions/comments'
+import { Link } from 'react-router-dom'
+import {
+  handleAddScoreComment,
+  handleRemoveComment,
+} from '../../actions/comments'
 import {
   TitleContainer,
   Title,
@@ -9,11 +13,19 @@ import {
   Score,
   VoteButton,
   Item,
+  OptionsContainer,
 } from './styles'
+import { Button } from '../../views/Post/Detail/styles'
 
 const handleVote = (e, id, vote, dispatch) => {
   e.preventDefault()
   dispatch(handleAddScoreComment({ id, vote }))
+}
+
+const handleRemove = (e, id, dispatch) => {
+  e.preventDefault()
+
+  dispatch(handleRemoveComment(id))
 }
 
 const CommentItem = ({ comment, dispatch }) => (
@@ -34,6 +46,13 @@ const CommentItem = ({ comment, dispatch }) => (
         +
       </VoteButton>
     </ScoreContainer>
+
+    <OptionsContainer>
+      <Link to={`/post/${comment.parentId}/comment/${comment.id}`}>Editar</Link>
+      <Button onClick={e => handleRemove(e, comment.id, dispatch)}>
+        Remover
+      </Button>
+    </OptionsContainer>
   </Item>
 )
 

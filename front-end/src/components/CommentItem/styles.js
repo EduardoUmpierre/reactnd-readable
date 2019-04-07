@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { Link } from 'react-router-dom'
 import { box } from '../../styles/shared'
 
 const sharedFontStyle = css`
@@ -7,7 +6,7 @@ const sharedFontStyle = css`
   font-size: 0.75rem;
 `
 
-export const Item = styled(Link)`
+export const Item = styled.div`
   align-items: center;
   ${box({ clickable: false })}
   display: flex;
@@ -33,7 +32,7 @@ export const ScoreContainer = styled.div`
   justify-content: center;
   display: flex;
   flex-shrink: 0;
-  margin: 0 0 0 2rem;
+  margin: 0 2rem;
 `
 export const Score = styled.div`
   ${sharedFontStyle}
@@ -53,4 +52,26 @@ export const VoteButton = styled.button`
 export const CommentCounter = styled.div`
   ${sharedFontStyle}
   flex-shrink: 0;
+`
+
+export const OptionsContainer = styled.div`
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-shrink: 0;
+
+  a,
+  button {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-right: 1rem;
+    text-decoration: underline;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 `

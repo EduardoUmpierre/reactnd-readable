@@ -7,11 +7,11 @@ import { EmptyMessage as StyledEmptyMessage } from '../PostList/styles'
 
 const EmptyMessage = styled(StyledEmptyMessage)``
 
-const CommentList = ({ items }) => (
+const CommentList = ({ items, postId }) => (
   <>
     <SectionTitle small>
       Comentários
-      <Link to="/">Novo Comentário</Link>
+      <Link to={`/post/${postId}/comment`}>Novo Comentário</Link>
     </SectionTitle>
     {items.map(comment => (
       <CommentItem key={comment.id} comment={comment}>

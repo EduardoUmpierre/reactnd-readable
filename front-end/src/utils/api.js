@@ -41,3 +41,7 @@ export const deletePost = id => remove(`posts/${id}`)
 // Comment
 export const setVoteComment = data =>
   post(`comments/${data.id}`, { option: data.vote })
+export const getComment = id => get(`comments/${id}`)
+export const saveComment = data => post('comments', data)
+export const updateCommentData = (id, data) => put(`comments/${id}`, data)
+export const deleteComment = id => remove(`comments/${id}`)

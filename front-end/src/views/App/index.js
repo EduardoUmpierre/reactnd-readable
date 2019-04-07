@@ -13,6 +13,7 @@ import Home from '../Home'
 import { container } from '../../styles/shared'
 import PostDetail from '../Post/Detail'
 import PostForm from '../Post/Form'
+import CommentForm from '../Comment/Form'
 
 const Container = styled.div`
   ${container}
@@ -46,6 +47,16 @@ class App extends Component {
                 <Route path="/" exact component={Home} />
                 <Route path="/post" exact component={PostForm} />
                 <Route path="/post/:post_id" exact component={PostForm} />
+                <Route
+                  path="/post/:post_id/comment"
+                  exact
+                  component={CommentForm}
+                />
+                <Route
+                  path="/post/:post_id/comment/:comment_id"
+                  exact
+                  component={CommentForm}
+                />
                 <Route path="/:category" exact component={Home} />
                 <Route
                   path="/:category/:post_id"

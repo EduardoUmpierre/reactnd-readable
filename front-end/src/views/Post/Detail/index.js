@@ -7,7 +7,7 @@ import { handleReceiveComments } from '../../../actions/comments'
 import SectionTitle from '../../../components/SectionTitle'
 import CommentList from '../../../components/CommentList'
 import { handleRemovePost } from '../../../actions/posts'
-import { EmptyMessage } from '../../../components/PostList/styles';
+import { EmptyMessage } from '../../../components/PostList/styles'
 
 class PostDetail extends Component {
   componentDidMount() {
@@ -36,7 +36,7 @@ class PostDetail extends Component {
           <div>
             <Link to={`/post/${post.id}`}>Editar</Link>
             <Button onClick={e => this.handleRemove(e, post.id)}>
-              Excluir
+              Remover
             </Button>
           </div>
         </SectionTitle>
@@ -44,9 +44,11 @@ class PostDetail extends Component {
         <PostItem post={post} link={false} />
         <PostBody>{post.body}</PostBody>
 
-        <CommentList items={comments} />
+        <CommentList postId={post.id} items={comments} />
       </>
-    ) : <EmptyMessage>Post não encontrado</EmptyMessage>
+    ) : (
+      <EmptyMessage>Post não encontrado</EmptyMessage>
+    )
   }
 }
 
@@ -55,7 +57,9 @@ const mapStateToProps = ({ posts, comments }, props) => {
 
   return {
     post: posts.find(post => post.id === post_id),
-    comments: comments.filter(comment => comment.parentId === post_id),
+    comments: comments.filter(
+      comment => comment.parentId === post_id && !comment.deleted
+    ),
   }
 }
 
