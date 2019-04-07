@@ -7,9 +7,9 @@ const sharedFontStyle = css`
   font-size: 0.75rem;
 `
 
-const sharedBoxStyle = clickable => css`
+export const Item = styled(Link)`
   align-items: center;
-  ${box({ clickable: clickable })}
+  ${box({ clickable: false })}
   display: flex;
   margin-bottom: 1rem;
   width: 100%;
@@ -17,14 +17,6 @@ const sharedBoxStyle = clickable => css`
   &:last-child {
     margin-bottom: 0;
   }
-`
-
-export const Item = styled(Link)`
-  ${({ clickable }) => sharedBoxStyle(clickable)}
-`
-
-export const DivItem = styled.div`
-  ${({ clickable }) => sharedBoxStyle(clickable)}
 `
 
 export const TitleContainer = styled.div`
@@ -41,7 +33,7 @@ export const ScoreContainer = styled.div`
   justify-content: center;
   display: flex;
   flex-shrink: 0;
-  margin: 0 2rem;
+  margin: 0 0 0 2rem;
 `
 export const Score = styled.div`
   ${sharedFontStyle}

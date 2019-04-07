@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { box } from '../../styles/shared';
+import { box } from '../../styles/shared'
 
 export const Container = styled.div`
   display: flex;
@@ -7,5 +7,5 @@ export const Container = styled.div`
 `
 
 export const EmptyMessage = styled.div`
-  ${box}
+  ${box({ clickable: false })}
 `

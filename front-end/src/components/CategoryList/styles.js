@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { box } from '../../styles/shared'
 
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
 `
-export const Item = styled(Link)`
+export const Item = styled(NavLink)`
   ${box({ clickable: true })}
   margin-right: 1rem;
   text-align: center;
@@ -14,5 +14,9 @@ export const Item = styled(Link)`
 
   &:last-child {
     margin-right: 0;
+  }
+
+  &.active {
+    background-color: #f1f1f1;
   }
 `
