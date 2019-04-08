@@ -15,6 +15,7 @@ import {
   ButtonContainer,
   Button,
 } from '../../Post/Form/styles'
+import { handleUpdateCommentCount } from '../../../actions/posts'
 
 class CommentForm extends Component {
   state = {
@@ -59,6 +60,7 @@ class CommentForm extends Component {
       }
 
       dispatch(handleAddComment(data))
+      dispatch(handleUpdateCommentCount({ id: post.id, action: 'increment' }))
     } else {
       const { title, body } = this.state
       const data = { title, body }

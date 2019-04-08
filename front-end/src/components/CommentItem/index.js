@@ -16,16 +16,20 @@ import {
   OptionsContainer,
 } from './styles'
 import { Button } from '../../views/Post/Detail/styles'
+import { handleUpdateCommentCount } from '../../actions/posts'
 
 const handleVote = (e, id, vote, dispatch) => {
   e.preventDefault()
   dispatch(handleAddScoreComment({ id, vote }))
 }
 
-const handleRemove = (e, id, dispatch) => {
+const handleRemove = (e, comment, dispatch) => {
   e.preventDefault()
 
+  const { id, parentId } = comment
+
   dispatch(handleRemoveComment(id))
+  dispatch(handleUpdateCommentCount({ id: parentId, action: 'decrement' }))
 }
 
 const CommentItem = ({ comment, dispatch }) => (
@@ -49,9 +53,7 @@ const CommentItem = ({ comment, dispatch }) => (
 
     <OptionsContainer>
       <Link to={`/post/${comment.parentId}/comment/${comment.id}`}>Editar</Link>
-      <Button onClick={e => handleRemove(e, comment.id, dispatch)}>
-        Remover
-      </Button>
+      <Button onClick={e => handleRemove(e, comment, dispatch)}>Remover</Button>
     </OptionsContainer>
   </Item>
 )

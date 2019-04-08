@@ -14,6 +14,7 @@ import { container } from '../../styles/shared'
 import PostDetail from '../Post/Detail'
 import PostForm from '../Post/Form'
 import CommentForm from '../Comment/Form'
+import NotFound from '../NotFound';
 
 const Container = styled.div`
   ${container}
@@ -45,6 +46,7 @@ class App extends Component {
             {!this.props.loading && (
               <Switch>
                 <Route path="/" exact component={Home} />
+                <Route path="/404" component={NotFound} />
                 <Route path="/post" exact component={PostForm} />
                 <Route path="/post/:post_id" exact component={PostForm} />
                 <Route
@@ -63,6 +65,7 @@ class App extends Component {
                   exact
                   component={PostDetail}
                 />
+                <Route component={NotFound} />
               </Switch>
             )}
           </Container>

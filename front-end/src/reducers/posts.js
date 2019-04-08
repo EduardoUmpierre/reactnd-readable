@@ -5,6 +5,7 @@ import {
   ADD_POST,
   UPDATE_POST,
   REMOVE_POST,
+  UPDATE_COMMENT_COUNT,
 } from '../actions/posts'
 
 export default function posts(state = [], action) {
@@ -23,6 +24,15 @@ export default function posts(state = [], action) {
         voteScore += action.vote === 'upVote' ? 1 : -1
 
         return { ...post, voteScore }
+      })
+    case UPDATE_COMMENT_COUNT:
+      return state.map(post => {
+        if (post.id !== action.id) return post
+
+        let commentCount = post.commentCount
+        commentCount += action.action === 'increment' ? 1 : -1
+
+        return { ...post, commentCount }
       })
     case ADD_POST:
       return [

@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, Redirect } from 'react-router-dom'
 import PostItem from '../../../components/PostItem'
 import { PostBody, Button } from './styles'
 import { handleReceiveComments } from '../../../actions/comments'
 import SectionTitle from '../../../components/SectionTitle'
 import CommentList from '../../../components/CommentList'
 import { handleRemovePost } from '../../../actions/posts'
-import { EmptyMessage } from '../../../components/PostList/styles'
 
 class PostDetail extends Component {
   componentDidMount() {
@@ -27,9 +26,13 @@ class PostDetail extends Component {
   }
 
   render() {
-    const { post, comments } = this.props
+    const { posts, post, comments } = this.props
 
-    return post ? (
+    if (posts && !post) {
+      return <Redirect to="/404" />
+    }
+
+    return (
       <>
         <SectionTitle>
           Post
@@ -46,8 +49,6 @@ class PostDetail extends Component {
 
         <CommentList postId={post.id} items={comments} />
       </>
-    ) : (
-      <EmptyMessage>Post não encontrado</EmptyMessage>
     )
   }
 }
@@ -56,6 +57,7 @@ const mapStateToProps = ({ posts, comments }, props) => {
   const { post_id } = props.match.params
 
   return {
+    posts,
     post: posts.find(post => post.id === post_id),
     comments: comments.filter(
       comment => comment.parentId === post_id && !comment.deleted
